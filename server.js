@@ -1,31 +1,53 @@
+const path = require('path');
 const express = require('express');
+const dotenv = require('dotenv');
 const cheerio = require('cheerio');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const colors = require('colors')
 const logger = require('morgan');
 const nodemon = require('nodemon');
 const bodyParser = require('body-parser');
-
+const connectDB = require('./config/db');
 
 const app = express();
 
-
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(
-    bodyParser.urlencoded({
-        extended:false
-    })
+  bodyParser.urlencoded({
+    extended: false
+  })
 );
 
-app.engine("handlebards", exphbs({defaultLayout:"main"}));
-app.set("view engine","handlebars");
+
+dotenv.config({ path: './config/config.env' });
+
+
+connectDB();
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.engine('handlebards', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
 
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req,res,next)=>{
-    res.send("Welcome")
-})
+app.get('/', (req, res, next) => {
+  res.send('Welcome');
+});
 
-app.listen(PORT, function(){
-    console.log(`server running on Port ${PORT}`)
+const server = app.listen(PORT, () => {
+    console.log(
+      `server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+    );
+  });
+
+
+// Handle unhandled rejections
+
+process.on('unhandledRejection', (err, promise) => {
+    console.log(`Error: ${err.message}`.red.bold);
+    // close server and exit
+    server.close(() => process.exit(1));
 })
