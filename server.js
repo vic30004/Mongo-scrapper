@@ -13,11 +13,8 @@ const connectDB = require('./config/db');
 const app = express();
 
 app.use(logger('dev'));
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 dotenv.config({ path: './config/config.env' });
@@ -33,9 +30,7 @@ app.set('view engine', 'handlebars');
 
 const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res, next) => {
-  res.send('Welcome');
-});
+
 
 const server = app.listen(PORT, () => {
     console.log(

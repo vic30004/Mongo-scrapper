@@ -1,0 +1,49 @@
+<section id="read-article">
+    <div class="art-container">
+        <h3 class="title">{{article.title}}</h3>
+        <h5 class="article-body">{{body}}</h5>
+    </div>
+</section>
+
+<div id="form">
+    <div class="form-content">
+        <form action="/comment/{{article._id}}" method="POST">
+            <h4>Leave a Comment!</h4>
+            <div class="comment">
+                <div class="input-field">
+                    <label for="name">Name</label>
+                    <input type="text" placeholder="Name" name="name" class="active">
+                </div>
+                <div class="comment">
+                    <div class="imput-filed">
+                        <label for="comment">Comment</label>
+                        <input type="text" placeholder="Comment" name="comment" class="active">
+                    </div>
+                </div>
+            </div>
+            <div id="submit">
+                <div class="input-field">
+                    <center><input type="submit" class="submit-btn" value="Submit"></center>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="commentContent">
+    <div class="comment-container">
+        <div class="card">
+            <h4>Comments:</h4>
+            {{#if article.comment}}
+            {{#each article.comment}}
+            <div class="card">
+                <p>{{nameComment}}</p>
+                <p>{{body}}</p>
+            </div>
+            {{/each}}
+            {{else}}
+            <p>No Comments yet. But, you could be the first to comment!</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
