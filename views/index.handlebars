@@ -1,0 +1,20 @@
+<header class="main-head">
+    <div class="head-container">
+           <h1>News Scrapper V1</h1>
+    <p>We provide you with the most up to date news! We might have fake news as well! So what are you waiting for? Click "Get News" to get started!!</p>
+    </div>
+</header>
+
+
+<article id="articles">
+    <div class="title"><h1>Articles!</h1> </div>
+    <div class="article-container">
+         {{#each article}}
+        <div class="main-content">
+           <h3>{{this.title}}</h3>
+            <a href="/readArticle/{{this._id}}" class="article-btn">Read Article</a>
+        </div>
+         {{/each}}
+    </div>
+
+</article>

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const ArticleSchema = new mongoose.Schema({
     title:{
         type:String,
@@ -11,9 +10,8 @@ const ArticleSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-
     comment: [{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
     }]
 })

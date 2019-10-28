@@ -6,19 +6,18 @@
 </section>
 
 <div id="form">
-     <h4>Leave a Comment!</h4>
+      <h4>Leave a Comment!</h4>
     <div class="form-content">
+      
         <form action="/comment/{{article._id}}" method="POST">
-           
+            
             <div class="comment">
                 <div class="input-field">
-                    <label for="name">Name</label>
                     <input type="text" placeholder="Name" name="name" class="active">
                 </div>
                 <div class="comment">
                     <div class="imput-filed">
-                        <label for="comment">Comment</label>
-                        <input type="text" placeholder="Comment" name="comment" class="active">
+                        <textarea type="text" placeholder="Comment" name="comment" class="active"></textarea>
                     </div>
                 </div>
             </div>
@@ -33,8 +32,9 @@
 
 <div id="commentContent">
     <div class="comment-container">
+
         <div class="card">
-            <h4>Comments:</h4>
+            <h4>Comments</h4>
             {{#if article.comment}}
             {{#each article.comment}}
             <div class="card">

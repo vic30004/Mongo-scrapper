@@ -1,19 +1,23 @@
-<head class="main-head">
-    <div class="container">
-           <h1>News Scrapper V1</h1>
-    <p>We provide you with the most up to date news! We might have fake news as well! So what are you waiting for? Click "Get News" to get started!!</p>
+
+<header>
+    <div class="nav-container">
+        <a href="/" class="logo">News Scrapper V1</a>
+        <ul class="nav-bar">
+            <li><a href="/api/scrape">Get News</a> </li>
+            <li><a href="/about">About</a> </li>
+        </ul>
     </div>
-</head>
+</header>
 
 
 <article class="articles">
-    <div class="container">
-         {{#each article}}
+    <div class="">
+        {{#each article}}
         <div class="main-content">
-           <h3>{{this.title}}</h3>
+            <h3>{{this.title}}</h3>
             <a href="/readArticle/{{this._id}}" class="article-btn">Read Article</a>
         </div>
-         {{/each}}
+        {{/each}}
     </div>
 
 </article>

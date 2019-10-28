@@ -10,6 +10,7 @@ const nodemon = require('nodemon');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 
+
 const app = express();
 
 app.use(logger('dev'));
@@ -24,11 +25,19 @@ connectDB();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.engine('handlebards', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
+app.set("view engine", "handlebars");
+
+var routes = require("./controller/controller.js");
+app.use("/", routes);
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 
 
